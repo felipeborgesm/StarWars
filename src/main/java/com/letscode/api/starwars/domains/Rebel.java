@@ -8,9 +8,10 @@ import java.util.List;
 @Data
 public class Rebel {
     private String id;
-    private String nome;
-    private String idade;
-    private String genero;
-    private List<String> localizacao = new ArrayList<>();
-    private List<String> inventario = new ArrayList<>();
+    private String name;
+    private Integer age;
+    private String gender;
+    private boolean isTraitor = false;
+    private List<String> location = new ArrayList<>();
+    private List<String> inventory = new ArrayList<>();
 }
