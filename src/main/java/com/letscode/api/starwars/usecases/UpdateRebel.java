@@ -6,15 +6,14 @@ import com.letscode.api.starwars.gateways.persistence.RebelPersistenceGateWay;
 import com.letscode.api.starwars.usecases.validators.UpdateRebelValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class UpdateRebel {
 
+  private final UpdateRebelValidator updateRebelValidator;
   private final RebelPersistenceGateWay rebelPersistenceGateWay;
-  private UpdateRebelValidator updateRebelValidator;
 
   public Rebel execute(Rebel rebel) {
     List<String> validationErrors = updateRebelValidator.validate(rebel);

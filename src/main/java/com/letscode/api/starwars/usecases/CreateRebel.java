@@ -9,13 +9,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class CreateRebel {
 
-  private final Map<String, Rebel> rebels;
-  private final RebelPersistenceGateWay rebelPersistenceGateWay;
   private final CreateRebelValidator createRebelValidator;
+  private final RebelPersistenceGateWay rebelPersistenceGateWay;
 
   public Rebel execute(Rebel rebel) {
     val validationErrors = createRebelValidator.validate(rebel);
@@ -27,3 +26,4 @@ public class CreateRebel {
     return rebelPersistenceGateWay.save(rebel);
   }
 }
+

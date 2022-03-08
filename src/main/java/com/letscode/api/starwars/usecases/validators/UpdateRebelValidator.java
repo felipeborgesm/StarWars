@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,7 +32,7 @@ public class UpdateRebelValidator {
     if (!StringUtils.hasText(rebel.getGender())) {
       validationErrors.add("Genre is required.");
     }
-    if (CollectionUtils.isEmpty(rebel.getLocation())) {
+    if (CollectionUtils.isEmpty(Arrays.asList(rebel.getLocation()))) {
       validationErrors.add("Location is required.");
     }
     if (CollectionUtils.isEmpty(rebel.getInventory())) {

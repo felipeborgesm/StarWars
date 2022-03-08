@@ -30,7 +30,7 @@ public class CreateRebelValidator {
       if (!StringUtils.hasText(rebel.getGender())) {
         validationErrors.add("Rebel must have a gender.");
       }
-      if (CollectionUtils.isEmpty(rebel.getLocation())) {
+      if (CollectionUtils.isEmpty(rebel.getLocation()) || rebel.getLocation().size() != 3) {
         validationErrors.add("Location error.");
       }
       if (CollectionUtils.isEmpty(rebel.getInventory())) {
