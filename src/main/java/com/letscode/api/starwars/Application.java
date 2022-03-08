@@ -3,10 +3,7 @@ package com.letscode.api.starwars;
 import com.letscode.api.starwars.domains.Rebel;
 import com.letscode.api.starwars.gateways.persistence.RebelPersistenceGateWay;
 import com.letscode.api.starwars.gateways.persistence.impl.collection.RebelPersistenceCollectionGateWayImpl;
-import com.letscode.api.starwars.usecases.CreateRebel;
-import com.letscode.api.starwars.usecases.ListRebels;
-import com.letscode.api.starwars.usecases.ReportRebel;
-import com.letscode.api.starwars.usecases.UpdateRebel;
+import com.letscode.api.starwars.usecases.*;
 import com.letscode.api.starwars.usecases.validators.CreateRebelValidator;
 import com.letscode.api.starwars.usecases.validators.UpdateRebelValidator;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +11,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 
 @SpringBootApplication
@@ -75,5 +73,12 @@ public class Application {
     ListRebels listRebels = new ListRebels(rebelPersistenceGateWay);
     List<Rebel> rebels = listRebels.execute();
     System.out.println(rebels);
+
+    System.out.println("Find rebel by id:");
+    FindRebelById findRebelById = new FindRebelById(rebelPersistenceGateWay);
+    Optional<Rebel> rebelFound = findRebelById.execute("1");
+    System.out.println(rebelFound);
+    Optional<Rebel> rebelFound2 = findRebelById.execute(rebel2.getId());
+    System.out.println(rebelFound2);
   }
 }
