@@ -5,14 +5,10 @@ import com.letscode.api.starwars.gateways.persistence.RebelPersistenceGateWay;
 import com.letscode.api.starwars.gateways.persistence.impl.collection.RebelPersistenceCollectionGateWayImpl;
 import com.letscode.api.starwars.usecases.*;
 import com.letscode.api.starwars.usecases.validators.CreateRebelValidator;
-import com.letscode.api.starwars.usecases.validators.UpdateRebelValidator;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import com.letscode.api.starwars.usecases.validators.UpdateRebelLocationValidator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.Executor;
+import java.util.*;
 
 @SpringBootApplication
 public class Application {
@@ -35,16 +31,22 @@ public class Application {
             .gender("masculino")
             .inventory(List.of("comida"))
             .location(List.of("32131231", "543534", "Sao Paulo"))
+            .inventory(List.of("Weapon", "Food"))
             .build();
 
     Rebel rebel1 = createRebel.execute(rebel);
     System.out.println(rebel1);
 
-    UpdateRebelValidator updateRebelValidator = new UpdateRebelValidator(rebelPersistenceGateWay);
-    UpdateRebel updateRebel = new UpdateRebel(updateRebelValidator, rebelPersistenceGateWay);
-    rebel1.setName("Yuri");
-    rebel1.setAge(25);
-    updateRebel.execute(rebel1);
+    UpdateRebelLocationValidator updateRebelLocationValidator =
+        new UpdateRebelLocationValidator(rebelPersistenceGateWay);
+    UpdateRebelLocation updateRebelLocation =
+        new UpdateRebelLocation(updateRebelLocationValidator, rebelPersistenceGateWay);
+    //    rebel1.setName("Yuri");
+    //    rebel1.setAge(25);
+
+    ArrayList<String> location = new ArrayList<>(Arrays.asList("43242", "97897", "brasilia"));
+    updateRebelLocation.updateLocation(rebel1, location);
+    System.out.println("mudando a localizacao");
     System.out.println(rebel1);
 
     ReportRebel reportRebel = new ReportRebel(rebelPersistenceGateWay);
@@ -53,18 +55,18 @@ public class Application {
 
     reportRebel.execute(rebel1);
     reportRebel.execute(rebel1);
-    //reportRebel.execute(rebel1);
+    // reportRebel.execute(rebel1);
 
     System.out.println(rebel1);
 
     Rebel rebel2 =
-            Rebel.builder()
-                    .name("felipe2")
-                    .age(102)
-                    .gender("masculino")
-                    .inventory(List.of("comida2"))
-                    .location(List.of("2222", "2222", "Rio de Janeiro"))
-                    .build();
+        Rebel.builder()
+            .name("felipe2")
+            .age(102)
+            .gender("masculino")
+            .location(List.of("2222", "2222", "Rio de Janeiro"))
+            .inventory(List.of("Water", "Water", "Water", "Water"))
+            .build();
 
     Rebel savedRebel2 = createRebel.execute(rebel2);
     System.out.println(savedRebel2);
@@ -80,5 +82,8 @@ public class Application {
     System.out.println(rebelFound);
     Optional<Rebel> rebelFound2 = findRebelById.execute(rebel2.getId());
     System.out.println(rebelFound2);
+    
+    CreateInventory createInventory = null;
+    System.out.println(createInventory.print());
   }
 }

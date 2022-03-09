@@ -12,12 +12,15 @@ public class RebelPersistenceCollectionGateWayImpl implements RebelPersistenceGa
 
   @Override
   public Rebel save(Rebel rebel) {
-    if(rebel.getId() == null || !StringUtils.hasText(rebel.getId())) {
+    if (rebel.getId() == null || !StringUtils.hasText(rebel.getId())) {
       rebel.setId(UUID.randomUUID().toString());
     }
     rebels.put(rebel.getId(), rebel);
     return rebel;
   }
+
+  @Override
+  public void updateLocation(Rebel rebel, ArrayList coordinates) { rebel.setLocation(coordinates); }
 
   @Override
   public boolean existsById(String id) {

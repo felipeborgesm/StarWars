@@ -12,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Component
-public class UpdateRebelValidator {
+public class UpdateRebelLocationValidator {
 
   private final RebelPersistenceGateWay rebelPersistenceGateWay;
 
