@@ -1,6 +1,8 @@
 package com.letscode.api.starwars.gateways.persistence.impl.collection;
 
+import com.letscode.api.starwars.domains.Inventory;
 import com.letscode.api.starwars.domains.Rebel;
+import com.letscode.api.starwars.domains.enums.InventoryItems;
 import com.letscode.api.starwars.gateways.persistence.RebelPersistenceGateWay;
 import org.springframework.util.StringUtils;
 
@@ -40,5 +42,21 @@ public class RebelPersistenceCollectionGateWayImpl implements RebelPersistenceGa
   @Override
   public Optional<Rebel> findById(String id) {
     return Optional.ofNullable(rebels.get(id));
+  }
+
+  @Override
+  public Map<InventoryItems, Integer> getInventory(String rebelId) {
+    return null;
+  }
+
+  @Override
+  public void createInventory(Rebel rebel, Map<InventoryItems, Integer> inventory) {
+    rebel.setInventory((Inventory) inventory);
+  }
+
+  @Override
+  public void updateInventory(String rebelId, Map<InventoryItems, Integer> inventory){
+    Rebel rebel = rebels.get(rebelId);
+    rebel.setInventory((Inventory) inventory);
   }
 }

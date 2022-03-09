@@ -16,5 +16,5 @@ public class Rebel {
     private boolean isTraitor = false;
     private Integer reportCounter;
     private List<String> location = new ArrayList<>();
-    private List<String> inventory = new ArrayList<>();
+    private Inventory inventory;
 }

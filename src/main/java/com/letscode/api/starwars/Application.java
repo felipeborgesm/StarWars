@@ -29,9 +29,9 @@ public class Application {
             .name("felipe")
             .age(10)
             .gender("masculino")
-            .inventory(List.of("comida"))
+//            .inventory(List.of("comida"))
             .location(List.of("32131231", "543534", "Sao Paulo"))
-            .inventory(List.of("Weapon", "Food"))
+//            .inventory(List.of("Weapon", "Food"))
             .build();
 
     Rebel rebel1 = createRebel.execute(rebel);
@@ -65,7 +65,7 @@ public class Application {
             .age(102)
             .gender("masculino")
             .location(List.of("2222", "2222", "Rio de Janeiro"))
-            .inventory(List.of("Water", "Water", "Water", "Water"))
+//            .inventory(List.of("Water", "Water", "Water", "Water"))
             .build();
 
     Rebel savedRebel2 = createRebel.execute(rebel2);
@@ -83,7 +83,5 @@ public class Application {
     Optional<Rebel> rebelFound2 = findRebelById.execute(rebel2.getId());
     System.out.println(rebelFound2);
     
-    CreateInventory createInventory = null;
-    System.out.println(createInventory.print());
   }
 }

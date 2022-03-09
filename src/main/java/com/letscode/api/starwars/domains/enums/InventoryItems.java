@@ -1,7 +1,7 @@
 package com.letscode.api.starwars.domains.enums;
 
 public enum InventoryItems {
-    Weapon(4), Amunnition(3), Water(2), Food(1);
+    WEAPON(4), AMMUNITION(3), WATER(2), FOOD(1);
 
     private final int valor;
 

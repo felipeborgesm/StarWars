@@ -35,9 +35,9 @@ public class UpdateRebelLocationValidator {
     if (CollectionUtils.isEmpty(Arrays.asList(rebel.getLocation()))) {
       validationErrors.add("Location is required.");
     }
-    if (CollectionUtils.isEmpty(rebel.getInventory())) {
-      validationErrors.add("Inventory is required.");
-    }
+//    if (CollectionUtils.isEmpty(rebel.getInventory())) {
+//      validationErrors.add("Inventory is required.");
+//    }
     return validationErrors;
   }
 }
