@@ -1,6 +1,8 @@
 package com.letscode.api.starwars;
 
+import com.letscode.api.starwars.domains.Inventory;
 import com.letscode.api.starwars.domains.Rebel;
+import com.letscode.api.starwars.domains.enums.InventoryItems;
 import com.letscode.api.starwars.gateways.persistence.RebelPersistenceGateWay;
 import com.letscode.api.starwars.gateways.persistence.impl.collection.RebelPersistenceCollectionGateWayImpl;
 import com.letscode.api.starwars.usecases.*;
@@ -82,6 +84,15 @@ public class Application {
     System.out.println(rebelFound);
     Optional<Rebel> rebelFound2 = findRebelById.execute(rebel2.getId());
     System.out.println(rebelFound2);
-    
+
+    System.out.println("Inventory test");
+    InventoryManager inventoryManager = new InventoryManager(rebelPersistenceGateWay);
+    Inventory inventory = inventoryManager.createInventory(rebel1);
+    System.out.println(rebel1);
+    inventoryManager.addItem(rebel1.getId(), InventoryItems.WATER);
+    inventoryManager.addItem(rebel1.getId(), InventoryItems.FOOD);
+    inventoryManager.addItem(rebel1.getId(), InventoryItems.WEAPON);
+    inventoryManager.addItem(rebel1.getId(), InventoryItems.AMMUNITION);
+    System.out.println(rebel1);
   }
 }

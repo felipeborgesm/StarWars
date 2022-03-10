@@ -10,4 +10,7 @@ import java.util.Map;
 public class Inventory {
   private String id;
   Map<InventoryItems, Integer> items = new HashMap<>();
+
+  public Inventory(Rebel rebel, Map<InventoryItems, Integer> inventory) {
+  }
 }

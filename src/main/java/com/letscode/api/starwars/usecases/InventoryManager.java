@@ -1,5 +1,6 @@
 package com.letscode.api.starwars.usecases;
 
+import com.letscode.api.starwars.domains.Inventory;
 import com.letscode.api.starwars.domains.Rebel;
 import com.letscode.api.starwars.domains.enums.InventoryItems;
 import com.letscode.api.starwars.gateways.persistence.RebelPersistenceGateWay;
@@ -30,8 +31,11 @@ public class InventoryManager {
     rebelPersistenceGateWay.createInventory(rebel, inventory);
   }
 
-  Map<InventoryItems, Integer> inventory =
-      Map.ofEntries(Map.entry(InventoryItems.WEAPON, InventoryItems.WEAPON.getValor()));
+  public Inventory createInventory(Rebel rebel) {
+    return new Inventory(rebel, rebelPersistenceGateWay.getInventory(rebel.getId()));
+  }
+//  Map<InventoryItems, Integer> inventory =
+//      Map.ofEntries(Map.entry(InventoryItems.WEAPON, InventoryItems.WEAPON.getValor()));
 
 
 }
