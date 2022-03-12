@@ -1,20 +1,54 @@
 package com.letscode.api.starwars.domains;
 
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.letscode.api.starwars.domains.enums.Gender;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Builder
 @Data
+@With
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Rebel {
-    private String id;
-    private String name;
-    private Integer age;
-    private String gender;
-    private boolean isTraitor = false;
-    private Integer reportCounter;
-    private List<String> location = new ArrayList<>();
-    private Inventory inventory;
+
+  @Id
+  @GeneratedValue(strategy = IDENTITY)
+  private Long id;
+
+  @NotNull
+  @Length(min = 5, max = 127)
+  @Column(length = 127)
+  private String name;
+
+  @NotNull
+  private int age = 0;
+
+  @Enumerated(EnumType.STRING)
+  @NotNull
+  private Gender gender;
+
+  @Embedded
+  @NotNull
+  private Location location;
+
+  @Embedded
+  @NotNull
+  private Inventory inventory;
+
+  @Builder.Default
+  @JsonIgnore
+  private int reportCounter = 0;
+
+  @Transient
+  @JsonIgnore
+  public boolean isTraitor() {
+    return reportCounter >= 3;
+  }
 }
