@@ -1,0 +1,22 @@
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    url: jdbc:mysql://127.0.0.1/sw?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show_sql: true
+      format_sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
