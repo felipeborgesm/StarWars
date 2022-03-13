@@ -8,23 +8,20 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RebelRepository extends PagingAndSortingRepository<Rebel,Long> {
 
-  @Query(nativeQuery = true, value = "select ((select count(id) from rebel where report_counter >= 3) /  (select count(id) from rebel)) * 100")
-  double countTraitorPercentage();
+  @Query(nativeQuery = true, value = "SELECT (CAST((SELECT count(id) from rebel where report_counter >= 3) AS NUMERIC(100, 2)) /  CAST((select count(id) from rebel) AS NUMERIC(100, 2))) * 100")
+  float countTraitorPercentage();
 
-  @Query(nativeQuery = true, value = "select ((select count(id) from rebel where report_counter < 3) /  (select count(id) from rebel)) * 100")
-  double countRebelsPercentage();
+  @Query(nativeQuery = true, value = "SELECT CAST(sum(food) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
+  float countAverageFood();
 
-  @Query(nativeQuery = true, value = "SELECT sum(food) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  double countAverageFood();
+  @Query(nativeQuery = true, value = "SELECT CAST(sum(water) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
+  float countAverageWater();
 
-  @Query(nativeQuery = true, value = "SELECT sum(water) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  double countAverageWater();
+  @Query(nativeQuery = true, value = "SELECT CAST(sum(ammo) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
+  float countAverageAmmo();
 
-  @Query(nativeQuery = true, value = "SELECT sum(ammo) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  double countAverageAmmo();
-
-  @Query(nativeQuery = true, value = "SELECT sum(weapon) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  double countAverageWeapon();
+  @Query(nativeQuery = true, value = "SELECT CAST(sum(weapon) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
+  float countAverageWeapon();
 
   @Query(nativeQuery = true,value = "SELECT (IFNULL(sum(food),0)) from rebel where report_counter  >= 3")
   int countByFoodLostToTraitors();
