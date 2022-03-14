@@ -1,13 +1,15 @@
 package com.letscode.api.starwars.services;
 
+import org.springframework.stereotype.Service;
+
 import com.letscode.api.starwars.Constants;
 import com.letscode.api.starwars.domains.Losses;
 import com.letscode.api.starwars.domains.RebelReport;
 import com.letscode.api.starwars.domains.enums.InventoryItems;
 import com.letscode.api.starwars.repository.RebelRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 /**
  * <p><b>Rebels Book log</b></p>

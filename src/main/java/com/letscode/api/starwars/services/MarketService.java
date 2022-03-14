@@ -1,5 +1,9 @@
 package com.letscode.api.starwars.services;
 
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.letscode.api.starwars.domains.Inventory;
 import com.letscode.api.starwars.domains.Rebel;
 import com.letscode.api.starwars.domains.Trade;
@@ -9,10 +13,8 @@ import com.letscode.api.starwars.exception.RebelNotFoundException;
 import com.letscode.api.starwars.exception.TraitorRebelException;
 import com.letscode.api.starwars.repository.RebelRepository;
 import com.letscode.api.starwars.utils.TradeUtils;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor

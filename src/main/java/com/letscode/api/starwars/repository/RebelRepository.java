@@ -1,9 +1,10 @@
 package com.letscode.api.starwars.repository;
 
-import com.letscode.api.starwars.domains.Rebel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
+
+import com.letscode.api.starwars.domains.Rebel;
 
 @Repository
 public interface RebelRepository extends PagingAndSortingRepository<Rebel,Long> {

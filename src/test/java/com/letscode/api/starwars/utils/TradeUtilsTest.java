@@ -1,11 +1,11 @@
 package com.letscode.api.starwars.utils;
 
-import com.letscode.api.starwars.domains.Inventory;
-import org.hibernate.annotations.Target;
+import java.util.Random;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
+import com.letscode.api.starwars.domains.Inventory;
 
 import static org.junit.jupiter.api.Assertions.*;
 

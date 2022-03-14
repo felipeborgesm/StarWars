@@ -1,12 +1,9 @@
 package com.letscode.api.starwars.services;
 
-import com.github.javafaker.Faker;
-import com.letscode.api.starwars.domains.Inventory;
-import com.letscode.api.starwars.domains.Location;
-import com.letscode.api.starwars.domains.Rebel;
-import com.letscode.api.starwars.domains.enums.Gender;
-import com.letscode.api.starwars.exception.RebelNotFoundException;
-import com.letscode.api.starwars.repository.RebelRepository;
+import java.util.Random;
+
+import javax.validation.ConstraintViolationException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,8 +16,13 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.validation.ConstraintViolationException;
-import java.util.Random;
+import com.github.javafaker.Faker;
+import com.letscode.api.starwars.domains.Inventory;
+import com.letscode.api.starwars.domains.Location;
+import com.letscode.api.starwars.domains.Rebel;
+import com.letscode.api.starwars.domains.enums.Gender;
+import com.letscode.api.starwars.exception.RebelNotFoundException;
+import com.letscode.api.starwars.repository.RebelRepository;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
