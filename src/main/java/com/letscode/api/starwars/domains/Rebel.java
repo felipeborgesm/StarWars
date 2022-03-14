@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -28,7 +29,8 @@ public class Rebel {
   private String name;
 
   @NotNull
-  private int age = 0;
+  @Positive
+  private int age = 1;
 
   @Enumerated(EnumType.STRING)
   @NotNull

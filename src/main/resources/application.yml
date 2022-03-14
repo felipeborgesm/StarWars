@@ -1,22 +1,21 @@
+swagger:
+  title: ${info.app.description}
+  basePackage: com.letscode.api.starwars.controller
+  enabled: true
+
+info:
+  app:
+    description: Star Wars Trade Outpost API
+
 spring:
+  application:
+    name: Star Wars API
   main:
     banner-mode: "off"
-  datasource:
-    url: jdbc:mysql://127.0.0.1/sw?createDatabaseIfNotExist=true
-    username: root
-    password: root
-    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
-      show_sql: true
-      format_sql: true
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql: TRACE
+  h2:
+    console:
+      enabled: true
+      path: /h2console/
