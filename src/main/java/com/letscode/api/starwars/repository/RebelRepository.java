@@ -9,30 +9,30 @@ import org.springframework.stereotype.Repository;
 public interface RebelRepository extends PagingAndSortingRepository<Rebel,Long> {
 
   @Query(nativeQuery = true, value = "SELECT (CAST((SELECT count(id) from rebel where report_counter >= 3) AS NUMERIC(100, 2)) /  CAST((select count(id) from rebel) AS NUMERIC(100, 2))) * 100")
-  float countTraitorPercentage();
+  Float countTraitorPercentage();
 
   @Query(nativeQuery = true, value = "SELECT CAST(sum(food) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  float countAverageFood();
+  Float countAverageFood();
 
   @Query(nativeQuery = true, value = "SELECT CAST(sum(water) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  float countAverageWater();
+  Float countAverageWater();
 
   @Query(nativeQuery = true, value = "SELECT CAST(sum(ammo) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  float countAverageAmmo();
+  Float countAverageAmmo();
 
   @Query(nativeQuery = true, value = "SELECT CAST(sum(weapon) AS NUMERIC(100, 2)) / (select count(id) from rebel where report_counter < 3) from rebel where report_counter  < 3")
-  float countAverageWeapon();
+  Float countAverageWeapon();
 
   @Query(nativeQuery = true,value = "SELECT (IFNULL(sum(food),0)) from rebel where report_counter  >= 3")
-  int countByFoodLostToTraitors();
+  Integer countByFoodLostToTraitors();
 
   @Query(nativeQuery = true,value = "SELECT (IFNULL(sum(water),0)) from rebel where report_counter  >= 3")
-  int countByWaterLostToTraitors();
+  Integer countByWaterLostToTraitors();
 
   @Query(nativeQuery = true,value = "SELECT (IFNULL(sum(ammo),0)) from rebel where report_counter  >= 3")
-  int countByAmmoLostToTraitors();
+  Integer countByAmmoLostToTraitors();
 
   @Query(nativeQuery = true,value = "SELECT (IFNULL(sum(weapon),0)) from rebel where report_counter  >= 3")
-  int countByWeaponLostToTraitors();
+  Integer countByWeaponLostToTraitors();
 
 }

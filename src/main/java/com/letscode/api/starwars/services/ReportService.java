@@ -6,6 +6,7 @@ import com.letscode.api.starwars.domains.RebelReport;
 import com.letscode.api.starwars.domains.enums.InventoryItems;
 import com.letscode.api.starwars.repository.RebelRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ReportService {
 
   private final RebelRepository repository;
@@ -25,7 +27,13 @@ public class ReportService {
    * @return a percentage of traitors.
    */
   public float getTraitorPercentage() {
-    return repository.countTraitorPercentage();
+    try {
+      Float value = repository.countTraitorPercentage();
+      return value == null ? 0f : value;
+    }catch (Exception e){
+      log.error("Ocorreu um erro na requisição",e);
+      return 0f;
+    }
   }
 
   /**
@@ -45,11 +53,20 @@ public class ReportService {
    * @return the average of that kind of resource per rebel.
    */
   public float getAverageResourcePerRebel(InventoryItems resourceName){
-    switch (resourceName){
-      case AMMO: return repository.countAverageAmmo();
-      case WATER: return repository.countAverageWater();
-      case WEAPON: return repository.countAverageWeapon();
-      default: return repository.countAverageFood();
+    try {
+      switch (resourceName) {
+        case AMMO:
+          return repository.countAverageAmmo();
+        case WATER:
+          return repository.countAverageWater();
+        case WEAPON:
+          return repository.countAverageWeapon();
+        default:
+          return repository.countAverageFood();
+      }
+    }catch (Exception e){
+      log.error("Ocorreu um erro na requisição",e);
+      return 0f;
     }
   }
 
@@ -59,13 +76,18 @@ public class ReportService {
    * @return A {@link Losses} report of all resources, in points that we lost for traitors.
    */
   public Losses getLossesToTraitors(){
-    return Losses
-        .builder()
-        .foodLost(repository.countByFoodLostToTraitors() * Constants.FOOD_POINTS)
-        .waterLost(repository.countByWaterLostToTraitors() * Constants.WATER_POINTS)
-        .weaponLost(repository.countByWeaponLostToTraitors() * Constants.WEAPON_POINTS)
-        .ammoLost(repository.countByAmmoLostToTraitors() * Constants.AMMO_POINTS)
-        .build();
+    try {
+      return Losses
+              .builder()
+              .foodLost(repository.countByFoodLostToTraitors() * Constants.FOOD_POINTS)
+              .waterLost(repository.countByWaterLostToTraitors() * Constants.WATER_POINTS)
+              .weaponLost(repository.countByWeaponLostToTraitors() * Constants.WEAPON_POINTS)
+              .ammoLost(repository.countByAmmoLostToTraitors() * Constants.AMMO_POINTS)
+              .build();
+    }catch (Exception e){
+      log.error("Ocorreu um erro na requisição",e);
+      return Losses.builder().build();
+    }
   }
 
   /**

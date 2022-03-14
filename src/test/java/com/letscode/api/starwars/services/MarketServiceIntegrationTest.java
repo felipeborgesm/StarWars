@@ -262,8 +262,8 @@ class MarketServiceIntegrationTest {
   private Location buildLocation() {
     return Location
         .builder()
-        .latitude(Float.parseFloat(faker.address().latitude()))
-        .longitude(Float.parseFloat(faker.address().longitude()))
+        .latitude(Float.parseFloat(faker.address().latitude().replace(",",".")))
+        .longitude(Float.parseFloat(faker.address().longitude().replace(",",".")))
         .name(faker.starTrek().location())
         .build();
   }
