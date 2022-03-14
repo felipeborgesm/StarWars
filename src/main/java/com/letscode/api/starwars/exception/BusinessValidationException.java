@@ -1,8 +1,8 @@
 package com.letscode.api.starwars.exception;
 
-import lombok.Getter;
-
 import java.util.List;
+
+import lombok.Getter;
 
 public class BusinessValidationException extends RuntimeException {
 

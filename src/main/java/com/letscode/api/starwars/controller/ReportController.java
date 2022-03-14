@@ -1,8 +1,16 @@
 package com.letscode.api.starwars.controller;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.letscode.api.starwars.domains.Losses;
 import com.letscode.api.starwars.domains.enums.InventoryItems;
 import com.letscode.api.starwars.services.ReportService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,29 +19,26 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Reports API", description = "API responsible gor generating multiple reports")
-@RequestMapping("/api/reports")
+@RequestMapping(value = "/api/reports",produces = MediaType.APPLICATION_JSON_VALUE,consumes = "*/*")
 public class ReportController {
 
   private final ReportService service;
 
-  @GetMapping("/traitors")
+  @GetMapping( "/traitors")
   @Operation(
       method = "GET",
       summary = "Percentage of Traitors",
       description = "Count the percentage of traitors among us",
       responses = {
-          @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = MediaType.TEXT_PLAIN_VALUE, examples = {@ExampleObject(value = "10.0")}))
+          @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType =MediaType.APPLICATION_JSON_VALUE, examples = {@ExampleObject(value = "10.0")}))
       }
   )
   public ResponseEntity<Float> traitorPercentageReport() {
-    return ResponseEntity.ok(service.getTraitorPercentage());
+      return ResponseEntity.ok(service.getTraitorPercentage());
   }
 
   @GetMapping("/rebels")
@@ -42,7 +47,7 @@ public class ReportController {
       summary = "Percentage of Rebels",
       description = "Count the percentage of rebels among us",
       responses = {
-          @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = MediaType.TEXT_PLAIN_VALUE, examples = {@ExampleObject(value = "10.0")}))
+          @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, examples = {@ExampleObject(value = "10.0")}))
       }
   )
   public ResponseEntity<Float> rebelsPercentageReport() {
@@ -55,7 +60,7 @@ public class ReportController {
       summary = "Average of Resources",
       description = "Gives an average of each resource type",
       responses = {
-          @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = MediaType.TEXT_PLAIN_VALUE, examples = {@ExampleObject(value = "10.0")}))
+          @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, examples = {@ExampleObject(value = "10.0")}))
       }
   )
   public ResponseEntity<Float> resourcePercentage(

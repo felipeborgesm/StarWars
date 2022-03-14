@@ -1,10 +1,10 @@
 package com.letscode.api.starwars.domains;
 
-import lombok.*;
-
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
+
+import lombok.*;
 
 @Builder
 @Data

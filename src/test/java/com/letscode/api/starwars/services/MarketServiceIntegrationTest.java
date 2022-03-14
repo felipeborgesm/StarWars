@@ -1,5 +1,15 @@
 package com.letscode.api.starwars.services;
 
+import java.util.Random;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import com.github.javafaker.Faker;
 import com.letscode.api.starwars.domains.Inventory;
 import com.letscode.api.starwars.domains.Location;
@@ -11,15 +21,6 @@ import com.letscode.api.starwars.exception.CannotTradeWithSelfException;
 import com.letscode.api.starwars.exception.RebelNotFoundException;
 import com.letscode.api.starwars.exception.TraitorRebelException;
 import com.letscode.api.starwars.repository.RebelRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -262,8 +263,8 @@ class MarketServiceIntegrationTest {
   private Location buildLocation() {
     return Location
         .builder()
-        .latitude(Float.parseFloat(faker.address().latitude()))
-        .longitude(Float.parseFloat(faker.address().longitude()))
+        .latitude(Float.parseFloat(faker.address().latitude().replace(",",".")))
+        .longitude(Float.parseFloat(faker.address().longitude().replace(",",".")))
         .name(faker.starTrek().location())
         .build();
   }

@@ -1,11 +1,8 @@
 package com.letscode.api.starwars.services;
 
-import com.github.javafaker.Faker;
-import com.letscode.api.starwars.domains.*;
-import com.letscode.api.starwars.domains.enums.Gender;
-import com.letscode.api.starwars.domains.enums.InventoryItems;
-import com.letscode.api.starwars.repository.RebelRepository;
-import com.letscode.api.starwars.utils.TradeUtils;
+import java.util.List;
+import java.util.Random;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
-import java.util.Random;
+import com.github.javafaker.Faker;
+import com.letscode.api.starwars.domains.*;
+import com.letscode.api.starwars.domains.enums.Gender;
+import com.letscode.api.starwars.domains.enums.InventoryItems;
+import com.letscode.api.starwars.repository.RebelRepository;
+import com.letscode.api.starwars.utils.TradeUtils;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -141,8 +142,8 @@ class ReportServiceIntegrationTest {
   private Location buildLocation() {
     return Location
         .builder()
-        .latitude(Float.parseFloat(faker.address().latitude()))
-        .longitude(Float.parseFloat(faker.address().longitude()))
+        .latitude(Float.parseFloat(faker.address().latitude().replace(",",".")))
+        .longitude(Float.parseFloat(faker.address().longitude().replace(",",".")))
         .name(faker.starTrek().location())
         .build();
   }
